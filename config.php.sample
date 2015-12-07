@@ -1,0 +1,6 @@
+<?php
+// config.php.sample
+$config = [
+  'db_uri' => 'mongodb://user:pass@host.mongolab.com:39421/db',
+  'geonames_uid' => 'user'
+];

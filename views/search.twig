@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>    
+  </head>
+  <body>
+
+    <div data-role="page">
+
+      <div data-role="header">
+        <h1>Weather Tracker</h1>
+      </div>
+
+      <div data-role="content">       
+        <div id="search">
+          <h2 class="ui-bar ui-bar-a">City Search</h2>
+          <div class="ui-body">
+            <form method="post" data-ajax="false" action="{{ app.url_generator.generate('search') }}">
+              <input type="search" name="query" value="{{ query}}" />
+              <input type="submit" name="submit" value="Search" />
+            </form>
+          </div>
+          {% if data %}
+          <h2 class="ui-bar ui-bar-a">Results</h2>
+          <div class="ui-body">
+            <ul data-role="listview" data-split-icon="plus" data-split-theme="d">          
+            {% for item in data %}
+              <li>
+                  <a>{{ item.city }}, {{ item.country }}</a>
+                  <a href="{{ app.url_generator.generate('add', {'gid': item.gid}) }}" data-ajax="false">Add</a>                 
+              </li>
+            {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div data-role="footer">
+      </div>
+
+    </div>
+      
+  </body>
+</html>

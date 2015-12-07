@@ -1,0 +1,8 @@
+---
+applications:
+- name: weather-tracker
+memory: 256M
+instances: 1
+host: weather-tracker
+buildpack: https://github.com/cloudfoundry/php-buildpack.git
+stack: cflinuxfs2

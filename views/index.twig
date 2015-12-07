@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>    
+  </head>
+  <body>
+
+    <div data-role="page">
+
+      <div data-role="header">
+        <h1>Weather Tracker</h1>
+      </div>
+
+      <div data-role="content">       
+        <h2 class="ui-bar ui-bar-a">Cities</h2>
+        <div class="ui-body">
+          <ul data-role="listview" data-split-icon="minus" data-split-theme="d">          
+          {% for item in cities %}
+            <li>
+              <a>{{ item.city }}, {{ item.country }}</a>
+              <a href="{{ app.url_generator.generate('delete', {'id': item._id|trim}) }}" data-ajax="false">Remove</a>                 
+            </li>
+          {% endfor %}
+          </ul>
+        </div>             
+        <div>
+          <p><a href="{{ app.url_generator.generate('search') }}" data-ajax="false" data-inline="true" data-role="button" data-icon="plus" data-theme="a">Add City</a></p>
+        </div>             
+      </div>
+
+      <div data-role="footer">
+      </div>
+
+    </div>
+      
+  </body>
+</html>
