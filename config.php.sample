@@ -2,5 +2,6 @@
 // config.php.sample
 $config = [
   'db_uri' => 'mongodb://user:pass@host.mongolab.com:39421/db',
-  'geonames_uid' => 'user'
+  'geonames_uid' => 'user',
+  'weather_uri' => 'https://user:pass@host.mybluemix.net'
 ];

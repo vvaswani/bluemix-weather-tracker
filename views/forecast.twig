@@ -17,22 +17,18 @@
       </div>
 
       <div data-role="content">       
-        <h2 class="ui-bar ui-bar-a">Current Weather</h2>
+        <h2 class="ui-bar ui-bar-a">Forecast for {{ data.city }}, {{ data.country }}</h2>
         <div class="ui-body">
-          <ul data-role="listview" data-split-icon="minus" data-split-theme="d">          
-          {% for item in cities %}
+          <ul data-role="listview" data-icon="" data-split-theme="d">          
+          {% for item in data.weather.forecasts if item.num > 1 and item.num < 9 %}
             <li>
-              <a href="{{ app.url_generator.generate('forecast', {'id': item._id|trim}) }}" data-ajax="false">{{ item.city }}, {{ item.country }}
-              <br/>
-              {{ item.weather.observation.metric.temp }}&deg; C | {{ item.weather.observation.phrase_22char }}
-              </a>
-              <a href="{{ app.url_generator.generate('delete', {'id': item._id|trim}) }}" data-ajax="false">Remove</a>                 
+              <a>{{ item.dow }}: {{ item.narrative }}</a>
             </li>
           {% endfor %}
           </ul>
         </div>             
         <div>
-          <p><a href="{{ app.url_generator.generate('search') }}" data-ajax="false" data-inline="true" data-role="button" data-icon="plus" data-theme="a">Add City</a></p>
+          <p><a href="{{ app.url_generator.generate('index') }}" data-ajax="false" data-inline="true" data-role="button" data-theme="a">Back</a></p>
         </div>             
       </div>
 
