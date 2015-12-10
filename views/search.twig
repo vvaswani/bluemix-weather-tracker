@@ -18,7 +18,7 @@
 
       <div data-role="content">       
         <div id="search">
-          <h2 class="ui-bar ui-bar-a">City Search</h2>
+          <h2 class="ui-bar ui-bar-a">Location Search</h2>
           <div class="ui-body">
             <form method="post" data-ajax="false" action="{{ app.url_generator.generate('search') }}">
               <input type="search" name="query" value="{{ query}}" />
@@ -31,7 +31,7 @@
             <ul data-role="listview" data-split-icon="plus" data-split-theme="d">          
             {% for item in data %}
               <li>
-                  <a>{{ item.city }}, {{ item.country }}</a>
+                  <a>{{ item.location }}, {{ item.country }}</a>
                   <a href="{{ app.url_generator.generate('add', {'gid': item.gid}) }}" data-ajax="false">Add</a>                 
               </li>
             {% endfor %}

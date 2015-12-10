@@ -20,9 +20,9 @@
         <h2 class="ui-bar ui-bar-a">Current Weather</h2>
         <div class="ui-body">
           <ul data-role="listview" data-split-icon="minus" data-split-theme="d">          
-          {% for item in cities %}
+          {% for item in locations %}
             <li>
-              <a href="{{ app.url_generator.generate('forecast', {'id': item._id|trim}) }}" data-ajax="false">{{ item.city }}, {{ item.country }}
+              <a href="{{ app.url_generator.generate('forecast', {'id': item._id|trim}) }}" data-ajax="false">{{ item.location }}, {{ item.country }}
               <br/>
               {{ item.weather.observation.metric.temp }}&deg; C | {{ item.weather.observation.phrase_22char }}
               </a>
@@ -32,7 +32,7 @@
           </ul>
         </div>             
         <div>
-          <p><a href="{{ app.url_generator.generate('search') }}" data-ajax="false" data-inline="true" data-role="button" data-icon="plus" data-theme="a">Add City</a></p>
+          <p><a href="{{ app.url_generator.generate('search') }}" data-ajax="false" data-inline="true" data-role="button" data-icon="plus" data-theme="a">Add Location</a></p>
         </div>             
       </div>
 

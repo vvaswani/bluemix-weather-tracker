@@ -17,7 +17,7 @@
       </div>
 
       <div data-role="content">       
-        <h2 class="ui-bar ui-bar-a">Forecast for {{ data.city }}, {{ data.country }}</h2>
+        <h2 class="ui-bar ui-bar-a">Forecast for {{ data.location }}, {{ data.country }}</h2>
         <div class="ui-body">
           <ul data-role="listview" data-icon="" data-split-theme="d">          
           {% for item in data.weather.forecasts if item.num > 1 and item.num < 9 %}
