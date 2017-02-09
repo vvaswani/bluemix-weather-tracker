@@ -24,7 +24,7 @@
             <li>
               <a href="{{ app.url_generator.generate('forecast', {'id': item._id|trim}) }}" data-ajax="false">{{ item.location }}, {{ item.country }}
               <br/>
-              {{ item.weather.observation.metric.temp }}&deg; C | {{ item.weather.observation.phrase_22char }}
+              {{ item.weather.observation.temp }}&deg; C | {{ item.weather.observation.wx_phrase }}
               </a>
               <a href="{{ app.url_generator.generate('delete', {'id': item._id|trim}) }}" data-ajax="false">Remove</a>                 
             </li>

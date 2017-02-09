@@ -20,7 +20,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 // register URL generator
-$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+$app->register(new Silex\Provider\RoutingServiceProvider());
 
 // configure MongoDB client
 $dbn = substr(parse_url($app->config['db_uri'], PHP_URL_PATH), 1);
@@ -45,7 +45,7 @@ $app->get('/index', function () use ($app, $db) {
   $collection = $db->locations;  
   $locations = iterator_to_array($collection->find());
   foreach ($locations as &$location) {
-    $uri = $app->config['weather_uri'] . '/api/weather/v2/observations/current?units=m&language=en-US&geocode=' . urlencode(sprintf('%f,%f', $location['lat'], $location['lng']));
+    $uri = $app->config['weather_uri'] . '/api/weather/v1/geocode/' . $location['lat'] . '/' . $location['lng'] . '/observations.json?units=m&language=en-US';
     $json = file_get_contents($uri);
     if ($json === FALSE) {
      throw new Exception("Could not connect to Weather API.");  
@@ -128,7 +128,7 @@ $app->get('/forecast/{id}', function ($id) use ($app, $db) {
   // connect and get forecast from Weather service
   $collection = $db->locations;
   $location = (array)$collection->findOne(array('_id' => new MongoId($id)));
-  $uri = $app->config['weather_uri'] . '/api/weather/v2/forecast/daily/10day?units=m&language=en-US&geocode=' . urlencode(sprintf('%f,%f', $location['lat'], $location['lng']));
+  $uri = $app->config['weather_uri'] . '/api/weather/v1/geocode/' . $location['lat'] . '/' . $location['lng'] . '/forecast/daily/10day.json?units=m&language=en-US';
   $json = file_get_contents($uri);
   if ($json === FALSE) {
     throw new Exception("Could not connect to Weather API.");  
